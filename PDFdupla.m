@@ -1,0 +1,20 @@
+N = 1e6;
+x = -10:0.01:10;
+mx = 1;
+sigx = 2;
+y = 15:0.01:35;
+my = 25;
+sigy = 2;
+Z = randn(1,N);
+X = sigx*Z+mx;
+Y = sigy*Z+my;
+f = @(x) 1/(sigx*sqrt(2*pi))*exp(-(x-mx).^2/(2*sigx^2));
+fy = @(y) 1/(sigy*sqrt(2*pi))*exp(-(y-my).^2/(2*sigy^2));
+figure(1);
+subplot(1,2,1);
+histogram(X,20,'Normalization','pdf');
+hold on;
+histogram(Y,20,'Normalization','pdf');
+hold on
+plot(x,f(x),'r-','Linewidth',3);
+plot(y,fy(y),'b-','Linewidth',3);
